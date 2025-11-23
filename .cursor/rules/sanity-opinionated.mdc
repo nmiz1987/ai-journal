@@ -1,0 +1,60 @@
+---
+alwaysApply: false
+---
+
+# Agent rules
+
+https://www.sanity.io/learn/course/code-with-ai/ai-rules.md
+
+By default AI tools will write the most average code, with a little extra guidance it can be much more expressive—to the benefit of your authors.
+
+So far, Cursor’s code has just used the defaults it has found within its corpus of understanding. It will then write the most average implementation of the Sanity Studio configuration API.
+
+1. See the documentation for more guidance on [Best practices for AI-enhanced Sanity development](https://www.sanity.io/learn/developer-guides/ai-best-practices)
+
+While functional, it's far from the most feature-complete, best-practice example of a Sanity Studio. Fortunately, a number of years ago, I wrote a guide called [The Opinionated Guide to Sanity Studio](https://www.sanity.io/guides/an-opinionated-guide-to-sanity-studio). Before now, a developer would have to keep these opinionated code styles in mind and effectively editorialize the way they write configuration code.
+
+Now, we can automate it.
+
+There is an emerging standard called [AGENTS.md](https://agents.md/) for AI tools to guide their implementations.
+
+We have made a subset of the “opinionated guide” available in the AGENTS.md format to add to any Sanity project.
+
+1. **Add** this [`AGENTS.md`](https://github.com/sanity-io/ai-rules/blob/main/AGENTS.md) file to your project root
+
+The schema type files that came with the Studio and those that we have created since don't follow the opinionated guidance. They don't express the full potential of the Sanity Studio document authoring experience.
+
+Let's get the agent to refactor the schema type files using the rules we've added to the project.
+
+1. **Open** a new Chat in “Agent” mode and speak something like the following prompt
+
+```text:Prompt
+Use @AGENTS.md to refactor the schema type files imported into @index.ts
+```
+
+Once complete, you should note significant changes to the way the schema types are configured.
+
+Two notable examples are:
+
+- all document types and objects have icons and previews in lists
+- fields are now arranged in field groups.
+
+![Sanity Studio showing four document types with icons and a new Post document being created](https://cdn.sanity.io/images/3do82whm/next/cb4a08a20e0e2c2652c418b4bb15861959561cb3-2240x1480.png)
+
+You can now imagine how by entering prompts you could continue to expand and refactor the content model—while still maintaining best practices throughout.
+
+## Referencing documentation
+
+The same way you can reference files and rules with `@` in chat also allows you to reference URLs, such as the Sanity documentation. If you're not getting satisfactory results from a model when trying to interact with some part of Sanity's API, you may benefit from pointing it at accurate, up to date information.
+
+This is typically because models have a "cutoff date," which may be well behind the current APIs. A common example of this causing confusion with Sanity is that the "Desk" tool was renamed "Structure" in May 2024. But your AI generated code probably still tries to import functions and Types from `sanity/desk`.
+
+So if you were creating configuration for the structure tool, you may wish to reference a documentation page like the [Structure Builder cheat sheet](https://www.sanity.io/learn/studio/structure-builder-cheat-sheet).
+
+![Code editor with a chat window open showing a prompt to setup structure builder](https://cdn.sanity.io/images/3do82whm/next/22054f9582efe9026c1e5515410c71bad0b9ea01-2240x1480.png)
+
+1. You may also wish to add the entire Sanity documentation to Cursor's context by using the @Docs command. [Learn more on Cursor's documentation](https://docs.cursor.com/context/@-symbols/@-docs).
+
+## Creating content
+
+These rules also contain guidance for generating placeholder content, which is helpful during development. Let's make some in the next lesson.
